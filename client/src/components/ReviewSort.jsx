@@ -43,7 +43,7 @@ class ReviewSort extends React.Component {
 
   fetchReviews() {
     axios
-      .get('/reviews')
+      .get('/api/reviews')
       .then(({ data }) => {
         this.setState({
           allReviews: data,
@@ -187,7 +187,6 @@ class ReviewSort extends React.Component {
         array.push(review)
       }
     })
-    console.log(array)
     this.setState({
       sortedReviews: array
     })

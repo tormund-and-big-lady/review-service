@@ -1,4 +1,4 @@
-const db  = require('./index.js');
+const db  = require('./model.js');
 
 let reviews = [
  {
@@ -4557,14 +4557,6 @@ let reviews = [
 
 let numReviews = Math.round((Math.random()*10) + 10);
 
-const insertSampleReviews = function() {
-  let randReviews = getReviews();
-  numReviews = Math.round((Math.random()*10) + 10);
-  db.review.create(randReviews)
-    .then(() => console.log("DB Seeded!"))
-    .catch(err => console.log("error seeding: ",err));
-};
-
 const getReviews = function() {
   let array = [];
   let copy = reviews.slice()
@@ -4581,12 +4573,12 @@ const getReviews = function() {
     if (copyIdx.rating === 5) {
       copyIdx.fit = 3
     } else if (copyIdx.rating <= 2) {
-      if (Math.random > 0.5) {
+      if (Math.random() >= 0.5) {
         copyIdx.fit = 1
       } else {
         copyIdx.fit = 5
       }
-    } else if (copyIdx <= 4) {
+    } else if (copyIdx === 4 || copyIdx === 2) {
       copyIdx.fit = Math.floor(Math.random()*3) + 2
     }
     array.push(copyIdx)
@@ -4594,8 +4586,12 @@ const getReviews = function() {
   return array;
 }
 
-
-// insertSampleReviews();
+const insertSampleReviews = (async () => {
+  numReviews = Math.round((Math.random()*10) + 10);
+  db.create(getReviews())
+    .then(() => console.log('db seeded'))
+    .catch(err => console.log('error seeding', err))
+})
 
 module.exports = {
    insertSampleReviews

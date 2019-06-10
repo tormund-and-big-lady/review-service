@@ -36,6 +36,7 @@
 }
 
 .CarotHeader {
+  display: flex;
   width: 15px;
   align-content: right;
 }

@@ -15,14 +15,6 @@ class ReviewsPagination extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {
-    console.log("ComponentDidMount!!")
-  }
-
-  componentDidUpdate() {
-    console.log("Updated SortedReviews: ", this.props.sortedReviews)
-  }
-
   handleClick(event) {
     this.setState({
       currentPage: Number(event.target.id)

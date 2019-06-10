@@ -20,21 +20,17 @@ class App extends React.Component {
 
   refreshReviews() {
     axios
-      .delete('/reviews/delete')
-      .then(() => {
-        this.fetchReviews();
-      })
+      .delete('/api/reviews')
+      .then(() => { this.fetchReviews() })
       .catch(err => console.log('error delete all:', err))
   }
 
   fetchReviews() {
     axios
-      .get('/reviews')
+      .get('/api/reviews')
       .then(({ data }) => {
-        this.setState({
-          reviews: data
-        })
-      })
+        this.setState({ reviews: data })
+      }, () => console.log(data))
       .catch(err => console.log("get error: ", err))
   }
 
