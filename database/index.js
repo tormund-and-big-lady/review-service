@@ -1,6 +1,12 @@
 const mongoose = require('mongoose');
 const model = require('./model.js');
 const seeder = require('./seed.js');
+
+
+require('dotenv').config();
+let DB_URL = (process.env.NODE_ENV === 'development') ? 'mongodb://localhost/FEC_Nordstrom' : `mongodb+srv://dbUser:${process.ENV.DB_PW}@cluster0-awanb.mongodb.net/test?retryWrites=true&w=majority`
+
+
 mongoose.connect('mongodb://localhost/FEC_Nordstrom', {useNewUrlParser: true});
 
 const db = mongoose.connection;

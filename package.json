@@ -12,6 +12,7 @@
     "db:setup": "node database/seed.js"
   },
   "dependencies": {
+    "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "lorem-ipsum": "^2.0.2",
     "moment": "^2.24.0",
